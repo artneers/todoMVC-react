@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as todoActions from '../store/actions/todo.actions';
+import { getIn } from 'immutable';
 
 class Footer extends Component {
 	clear_todo = () => {
@@ -10,7 +11,6 @@ class Footer extends Component {
 		}
 	}
   render() {
-		console.log(this.props)
 		let taskLen = this.props.todos.filter(todo => !todo.isCompleted).length
     return (
       <footer className="footer">
@@ -35,7 +35,7 @@ class Footer extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	todos: state.todoReducer.todos,
+	todos: getIn(state.todoReducer, ['todos']),
 	filter: state.todoReducer.filter
 })
 

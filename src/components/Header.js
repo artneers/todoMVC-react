@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import * as todoActions from '../store/actions/todo.actions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { getIn } from 'immutable';
+
 
 class Header extends Component {
 
@@ -28,7 +30,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  todos: state.todoReducer.todos
+  todos: getIn(state.todoReducer, ['todos'])
 })
 
 const mapDispatchToProps = (dispatch) => ({
